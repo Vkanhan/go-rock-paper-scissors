@@ -7,48 +7,37 @@ import (
 
 func main() {
 
-	const rounds = 3
-
 	fmt.Println("Rock-Paper-Scissors")
 
-	for i := 0; i < rounds; i++ {
-		computerChoiceNum := rand.Intn(rounds)
-		var computerChoice string
-		switch computerChoiceNum{
-		case 0:
-			computerChoice = "Rock"
-		case 1:
-			computerChoice = "Paper"
-		case 2:
-			computerChoice = "Scissors"
-		}
-		
-	
-		//User choice
-		var playersChoice string
-		fmt.Println("Enter your choice ('Rock', 'Paper', 'Choice': )")
-		fmt.Scanln(&playersChoice)
-
-		//game logic
-		fmt.Printf("Computer chose: %s\n", computerChoice)
-
-		switch {
-		case playersChoice == computerChoice:
-			fmt.Println("Its a tie!")
-		case playersChoice == "Rock" && computerChoice == "Paper":
-			fmt.Println("Paper wraps the rock. Computer wins!")
-		case playersChoice == "Paper" && computerChoice == "Scissors":
-			fmt.Println("Scissors cuts the paper. Computer wins!")
-		case playersChoice == "Scissors" && computerChoice == "Rock":
-			fmt.Println("Rocks slams the scissors. Computer wins")
-		case playersChoice == "Rock" && computerChoice == "Scissors":
-			fmt.Println("Rock slams the scissors. You wins!")
-		case playersChoice == "Paper" && computerChoice == "Rock":
-			fmt.Println("Paper wraps the rock. You wins!")
-		case playersChoice == "Scissors" && computerChoice == "Paper":
-			fmt.Println("Scissors cuts the paper. You wins")
-		}
+	//possible moves
+	moves := [3]string{
+		"Rock",
+		"Paper",
+		"Scissors",
 	}
 
-	fmt.Println("Game over!")
+	for {
+		//get the players move
+	var playerMove string
+	fmt.Println("Rock, Paper or Scissors?")
+	fmt.Scanln(&playerMove)
+
+	//Computer move
+	computerMove := moves[rand.Intn(3)]
+
+	//print the results
+	fmt.Printf("You played %s and computer played %s\n", playerMove, computerMove)
+
+	//logic
+	switch {
+	case playerMove == computerMove:
+		fmt.Println("Its a tie!")
+	case playerMove == "Rock" && computerMove == "Scissors" || playerMove == "Paper" && computerMove == "Rock" || playerMove == "Scissors" && computerMove == "Paper":
+		fmt.Println("You win")
+	default:
+		fmt.Println("Computer win")
+	}
+	}
+	
+
 }
